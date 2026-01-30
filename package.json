@@ -5,11 +5,12 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "tsx": "^4.21.0"
   },
   "scripts": {
-    "dev": "tsx src/server.ts",
+    "dev": "tsx watch --env-file=.env src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },
