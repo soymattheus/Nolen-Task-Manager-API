@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "docker",
+    "password": "docker",
+    "database": "task-manager-dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
+
