@@ -3,13 +3,13 @@ import sequelize from "../config/database";
 import { TaskAttributes } from "../types/task";
 
 class Task extends Model<TaskAttributes> implements TaskAttributes {
-  public id_task!: string;
-  public title!: string;
-  public description!: string;
-  public status!: string;
-  public id_user!: string;
-  public created_at!: Date;
-  public updated_at!: Date;
+  declare id_task: string;
+  declare title: string;
+  declare description: string;
+  declare status: string;
+  declare id_user: string;
+  declare created_at: Date;
+  declare updated_at: Date;
 }
 
 Task.init(

@@ -4,7 +4,7 @@ export interface UserAttributes {
   name: string;
   last_name: string;
   email: string;
-  password: string;
-  created_at: Date;
-  updated_at: Date;
+  password?: string;
+  created_at?: Date;
+  updated_at?: Date;
 }

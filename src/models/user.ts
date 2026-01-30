@@ -3,14 +3,14 @@ import sequelize from "../config/database";
 import { UserAttributes } from "../types/user";
 
 class User extends Model<UserAttributes> implements UserAttributes {
-  public id_user!: string;
-  public name!: string;
-  public last_name!: string;
-  public email!: string;
-  public password!: string;
-  public status!: string;
-  public created_at!: Date;
-  public updated_at!: Date;
+  declare id_user: string;
+  declare name: string;
+  declare last_name: string;
+  declare email: string;
+  declare password: string;
+  declare status: string;
+  declare created_at: Date;
+  declare updated_at: Date;
 }
 
 User.init(
