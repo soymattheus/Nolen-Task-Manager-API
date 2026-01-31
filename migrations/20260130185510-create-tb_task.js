@@ -25,7 +25,7 @@ export default {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
-          model: "user",
+          model: "tb_user",
           key: "id_user",
         },
       },
