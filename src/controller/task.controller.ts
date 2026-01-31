@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
-import { Task, User } from "../models";
-import { create } from "node:domain";
+import { Task } from "../models";
 
 export default {
   getAll: async (req: Request, res: Response) => {

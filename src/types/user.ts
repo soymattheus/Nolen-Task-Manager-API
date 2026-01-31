@@ -1,3 +1,8 @@
+export interface TaskCounter {
+  label: string;
+  value: number;
+}
+
 export interface UserAttributes {
   id_user: string;
   status: string;
@@ -7,4 +12,5 @@ export interface UserAttributes {
   password?: string;
   created_at?: Date;
   updated_at?: Date;
+  tasks?: TaskCounter[];
 }
