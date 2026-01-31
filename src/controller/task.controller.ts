@@ -7,16 +7,43 @@ export default {
   getAll: async (req: Request, res: Response) => {
     try {
       const userId = req.user?.id;
+
       const status =
         typeof req.query.status === "string" ? req.query.status : undefined;
 
-      const tasks = await Task.findAll({
-        where: { id_user: userId, ...(status ? { status } : {}) },
+      const page =
+        typeof req.query.page === "string"
+          ? Math.max(Number(req.query.page), 1)
+          : 1;
+
+      const limit =
+        typeof req.query.limit === "string"
+          ? Math.min(Number(req.query.limit), 100)
+          : 10;
+
+      const offset = (page - 1) * limit;
+
+      const { rows: tasks, count: total } = await Task.findAndCountAll({
+        where: {
+          id_user: userId,
+          ...(status && { status }),
+        },
         order: [["created_at", "DESC"]],
+        limit,
+        offset,
       });
 
-      return res.status(200).json(tasks);
+      return res.status(200).json({
+        data: tasks,
+        meta: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
+      });
     } catch (error) {
+      console.error(error);
       return res.status(500).json({
         message: "Erro ao buscar tarefas",
       });
