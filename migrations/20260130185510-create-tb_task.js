@@ -22,8 +22,12 @@ export default {
         allowNull: false,
       },
       id_user: {
-        type: Sequelize.STRING(36),
+        type: Sequelize.UUID,
         allowNull: false,
+        references: {
+          model: "user",
+          key: "id_user",
+        },
       },
       created_at: {
         type: Sequelize.DATE,

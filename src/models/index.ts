@@ -3,14 +3,14 @@ import TokenBlacklist from "./tokenBlacklist";
 import Task from "./task";
 
 User.hasMany(Task, {
-  foreignKey: "idUser",
-  sourceKey: "idUser",
+  foreignKey: "id_user",
+  sourceKey: "id_user",
   as: "tasks",
 });
 
 Task.belongsTo(User, {
-  foreignKey: "idUser",
-  targetKey: "idUser",
+  foreignKey: "id_user",
+  targetKey: "id_user",
   as: "user",
 });
 

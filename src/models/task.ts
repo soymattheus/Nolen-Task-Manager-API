@@ -32,7 +32,7 @@ Task.init(
       allowNull: false,
     },
     id_user: {
-      type: DataTypes.STRING(36),
+      type: DataTypes.UUIDV4,
       allowNull: false,
     },
     created_at: {
