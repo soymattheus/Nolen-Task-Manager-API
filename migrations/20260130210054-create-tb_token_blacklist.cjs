@@ -1,7 +1,8 @@
 "use strict";
 
 /** @type {import('sequelize-cli').Migration} */
-export default {
+// export default {
+module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("tb_token_blacklist", {
       token: {

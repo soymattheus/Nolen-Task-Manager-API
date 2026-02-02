@@ -3,7 +3,14 @@
     "username": "docker",
     "password": "docker",
     "database": "task-manager-dev",
-    "host": "127.0.0.1",
+    "host": "127.0.0.1", 
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "docker",
+    "password": "docker",
+    "database": "task-manager-dev",
+    "host": "service-pg", 
     "dialect": "postgres"
   }
 }

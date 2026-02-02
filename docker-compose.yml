@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   service-pg:
     image: bitnami/postgresql
@@ -7,3 +9,18 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=task-manager-dev
+    volumes:
+      - pgdata:/bitnami/postgresql
+
+  api:
+    build: .
+    container_name: nolen-task-api
+    ports:
+      - "9891:9891"
+    depends_on:
+      - service-pg
+    env_file:
+      - .env
+
+volumes:
+  pgdata:

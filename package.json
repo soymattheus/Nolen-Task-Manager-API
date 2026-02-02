@@ -17,9 +17,12 @@
     "zod": "^4.3.6"
   },
   "scripts": {
-    "dev": "tsx watch --env-file=.env src/server.ts",
+    "_dev": "tsx watch --env-file=.env src/server.ts",
+    "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
