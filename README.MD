@@ -23,18 +23,21 @@ API REST para gerenciamento de tarefas com autenticação JWT. O projeto foi des
 ### 1️⃣ Clonar o repositório
 
 ```bash
-git clone <url-do-repositorio>
-cd nolen-task-manager
+$ git clone https://github.com/soymattheus/Nolen-Task-Manager-API
+
+$ cd nolen-task-manager
 ```
 
 ---
 
-### 2️⃣ Subir apenas o banco de dados (PostgreSQL)
+## RODAR EM DESENVOLVIMENTO
+
+### 1️⃣ Subir apenas o banco de dados (PostgreSQL)
 
 O projeto utiliza PostgreSQL via Docker.
 
 ```bash
-docker compose up -d
+$ docker compose up -d service-pg
 ```
 
 Credenciais do banco (DEV):
@@ -46,11 +49,13 @@ Credenciais do banco (DEV):
 
 ---
 
-### 3️⃣ Configurar variáveis de ambiente
+### 2️⃣ Configurar variáveis de ambiente
 
 Crie um arquivo `.env` na raiz do projeto:
 
 ```env
+NODE_ENV=development
+
 PORT=9891
 
 DB_NAME=task-manager-dev
@@ -59,41 +64,82 @@ DB_PASSWORD=docker
 DB_HOST=localhost
 DB_PORT=5432
 
-JWT_SECRET=feb2016
+JWT_SECRET=your-secret-key
 ```
 
 ---
 
-### 4️⃣ Instalar dependências
+### 3️⃣ Instalar dependências
 
 ```bash
-npm install
+$ npm install
 ```
 
 ---
 
-### 5️⃣ Rodar as migrations
+### 4️⃣ Rodar as migrations
 
 Após subir o banco com Docker, execute as migrations do Sequelize:
 
 ```bash
-npx sequelize-cli db:migrate
+$ npx sequelize-cli db:migrate
 ```
 
 Isso irá criar as tabelas necessárias no banco de dados.
 
 ---
 
-### 6️⃣ Rodar a aplicação em desenvolvimento
+### 5️⃣ Rodar a aplicação em desenvolvimento
 
 ```bash
-npm run dev
+$ npm run dev
 ```
 
 A API estará disponível em:
 
 ```
 http://localhost:9891
+```
+
+---
+
+## RODAR EM TESTE
+
+### 1️⃣ Configurar variáveis de ambiente
+
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+NODE_ENV=test
+
+PORT=9891
+
+DB_NAME=task-manager-dev
+DB_USERNAME=docker
+DB_PASSWORD=docker
+DB_HOST=localhost
+DB_PORT=5432
+
+JWT_SECRET=your-secret-key
+```
+
+---
+
+### 2️⃣ Subir todo o projeto
+
+O projeto utiliza PostgreSQL via Docker.
+
+```bash
+$ docker compose up --build
+```
+
+---
+
+Disponível em
+
+```bash
+PostgreSQL → service-pg:5432
+API → http://localhost:9891
 ```
 
 ---
@@ -124,7 +170,7 @@ http://localhost:9891
 - **JWT** para autenticação stateless
 - **Zod** para validação e normalização de dados de entrada
 - **Separação de responsabilidades** entre controllers, models, schemas e middlewares
-- **Docker apenas para o banco** em ambiente de desenvolvimento, mantendo a API rodando localmente
+- **Docker e Docker Compose** para padronização de ambientes, isolamento de dependências e orquestração de serviços (API + PostgreSQL), facilitando setup local, testes e portabilidade entre ambientes
 
 ---
 
@@ -182,10 +228,14 @@ cd nolen-task-manager
 
 ---
 
-### 2️⃣ Start only the database (PostgreSQL)
+## RUN IN DEVELOPMENT MODE
+
+### 1️⃣ Start only the database (PostgreSQL)
+
+OThe project uses PostgreSQL via Docker.
 
 ```bash
-docker compose up -d service-pg
+$ docker compose up -d service-pg
 ```
 
 Database credentials (DEV):
@@ -197,11 +247,13 @@ Database credentials (DEV):
 
 ---
 
-### 3️⃣ Environment variables
+### 2️⃣ Configure environment variables
 
-Create a `.env` file in the project root:
+Create a .env file in the project root:
 
 ```env
+NODE_ENV=development
+
 PORT=9891
 
 DB_NAME=task-manager-dev
@@ -210,41 +262,82 @@ DB_PASSWORD=docker
 DB_HOST=localhost
 DB_PORT=5432
 
-JWT_SECRET=feb2016
+JWT_SECRET=your-secret-key
 ```
 
 ---
 
-### 4️⃣ Install dependencies
+### 3️⃣ Install dependencies
 
 ```bash
-npm install
+$ npm install
 ```
 
 ---
 
-### 5️⃣ Run the migrations
+### 4️⃣ Run migrations
 
 After starting the database with Docker, run the Sequelize migrations:
 
 ```bash
-npx sequelize-cli db:migrate
+$ npx sequelize-cli db:migrate
 ```
 
-This will create the necessary tables in the database.
+This will create the required tables in the database.
 
 ---
 
-### 6️⃣ Run the application in development mode
+### 5️⃣ Run the application in development mode
 
 ```bash
-npm run dev
+$ npm run dev
 ```
 
 The API will be available at:
 
 ```
 http://localhost:9891
+```
+
+---
+
+## RUN IN TEST MODE
+
+### 1️⃣ Configure environment variables
+
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+NODE_ENV=test
+
+PORT=9891
+
+DB_NAME=task-manager-dev
+DB_USERNAME=docker
+DB_PASSWORD=docker
+DB_HOST=localhost
+DB_PORT=5432
+
+JWT_SECRET=your-secret-key
+```
+
+---
+
+### 2️⃣ Start the full project
+
+The project uses PostgreSQL via Docker.
+
+```bash
+$ docker compose up --build
+```
+
+---
+
+Disponível em
+
+```bash
+PostgreSQL → service-pg:5432
+API → http://localhost:9891
 ```
 
 ---
@@ -275,7 +368,7 @@ http://localhost:9891
 - **JWT** for stateless authentication
 - **Zod** for request validation
 - **Clear separation of concerns** across layers
-- **Docker used only for the database** during development
+- **Docker and Docker** Compose for environment standardization, dependency isolation, and service orchestration (API + PostgreSQL), enabling easier local setup, testing, and portability across environments.
 
 ---
 
